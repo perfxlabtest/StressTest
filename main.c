@@ -39,7 +39,12 @@ long get_memory_usage() {
 // 2个进程,一个进程执行,一个进程用来监控系统信息
 // 时间长的才启动进程
 int main(){
+    float cpu_usage = get_cpu_usage();
+    long memory_usage = get_memory_usage();
 
+    printf("CPU Usage: %.2f%%\n", cpu_usage);
+    printf("Memory Usage: %ld MB\n", memory_usage);
+    
     printf("STRESS_TEST_VERSION_0_1 \r\n");
     printf("SCANNING_SYSTEM_PLATFORM_PARAMETER_INFORMATION, %CPU  %MEM  \r\n");
 
