@@ -1,19 +1,17 @@
-CC = g++
-CFLAGS = -Wall -O2
+CC = gcc 
+CFLAGS = -I inc -O3 
+SRC = src/stream.c
+OBJ = bin/stream.o
+TARGET = run
 
-TARGET= run
-SOURCE = src/hello.c 
-OBJECT = $(patsubst %.c, %.o, $(SOURCE))
+$(TARGET): $(OBJ)
+	$(CC)  main.c $(OBJ) $(CFLAGS) -o $@
+	
+$(OBJ): $(SRC)
+	$(CC) -c $< -o $@
 
 
-all: $(TARGET)
 
-$(TARGET): $(OBJECT)
-	$(CC) $(CFLAGS) -o bin/$@ $^
-
-
-src/%.o :%.c 
-	$(CC) $(CFLAGS) -c $<
-
+.PHONY: clean
 clean:
-	rm -f bin/$(TARGET) src/*.o
+	rm -f $(OBJ) $(TARGET) $(OBJ)/*.o *.exe
